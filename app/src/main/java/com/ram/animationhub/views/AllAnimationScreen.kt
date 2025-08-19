@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ram.animationhub.model.Animation
 import com.ram.animationhub.model.AnimationId
+import com.ram.animationhub.ui.theme.AnimationHubTheme
 
 /**
  * @author ASUS
@@ -48,17 +49,16 @@ import com.ram.animationhub.model.AnimationId
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun AnimationMasterApp() {
-    var current by remember { mutableStateOf<AnimationId?>(null) } // null = list screen
-    MaterialTheme(colorScheme = lightColorScheme()) {
+    var title by remember { mutableStateOf<String>("Animation HUB") } // null = list screen
+    AnimationHubTheme {
 
-        var title = Text(if (current == null) "Animation HUB" else animations.first { it.id == current }.title)
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { title },
+                    title = {Text(title)},
                     navigationIcon = {
-                        if (current != null) {
-                            IconButton(onClick = { current = null }) {
+                        if (title != "Animation HUB") {
+                            IconButton(onClick = { title = "Animation HUB" }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                             }
                         } else null
@@ -67,12 +67,12 @@ fun AnimationMasterApp() {
             }
         ) { padding ->
             AnimatedContent(
-                targetState = current,
+                targetState = title,
                 transitionSpec = {
-                    if (targetState != null && initialState == null) {
+                    if (targetState != "Animation HUB" ) {
                         // List → Detail: slide in from right
                         (slideInHorizontally { it } + fadeIn()).togetherWith(slideOutHorizontally { -it / 4 } + fadeOut())
-                    } else if (targetState == null && initialState != null) {
+                    } else if (targetState == "Animation HUB") {
                         // Detail → List: slide in from left
                         (slideInHorizontally { -it / 4 } + fadeIn()).togetherWith(slideOutHorizontally { it } + fadeOut())
                     } else {
@@ -83,8 +83,8 @@ fun AnimationMasterApp() {
                     .fillMaxSize()
                     .padding(padding)
             ) { screen ->
-                if (screen == null) {
-                    AnimationList(onClick = { current = it })
+                if (screen == "Animation HUB") {
+                    AnimationList(onClick = { title = it.toString() })
                 } else {
                     AnimationDetail(screen)
                 }
@@ -140,19 +140,21 @@ fun SectionTitle(title: String, description: String) {
 }
 
 @Composable
-fun AnimationDetail(id: AnimationId) {
+fun AnimationDetail(title: String) {
     // Single scrollable container per screen
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
-            when (id) {
-                AnimationId.ValueBased -> ValueBased()
-                AnimationId.Animatable -> Animatable()
-                AnimationId.Visibility -> Visibility()
-                AnimationId.Transition -> Transition()
-                AnimationId.Infinite -> Infinite()
+            when (true) {
+                (title == AnimationId.ValueBased.name) -> ValueBased()
+                (title == AnimationId.Animatable.name) -> Animatable()
+                (title == AnimationId.Visibility.name) -> Visibility()
+                (title == AnimationId.Transition.name) -> Transition()
+                (title == AnimationId.Infinite.name) -> Infinite()
+
+                else -> ValueBased()
             }
         }
 
