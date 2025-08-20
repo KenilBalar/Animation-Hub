@@ -1,5 +1,6 @@
 package com.ram.animationhub.views
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
@@ -65,6 +66,10 @@ fun AnimationMasterApp() {
                 )
             }
         ) { padding ->
+
+            BackHandler(enabled = title != "Animation HUB") {
+                title = "Animation HUB"
+            }
 
             AnimatedContent(
                 targetState = title,
