@@ -11,5 +11,10 @@ data class Animation(val id: AnimationId, val title: String, val description: St
     Animatable,
     Visibility,
     Transition,
-    Infinite
+    Infinite,
+    AnimateContentSize,
+    AnimatedContent,
+    Draggable,
+    AnimateItemPlacement,
+    GraphicsLayer
 }
