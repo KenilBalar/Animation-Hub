@@ -59,8 +59,8 @@ fun ValueBased() {
     var big by rememberSaveable { mutableStateOf(false) }
     var on by rememberSaveable { mutableStateOf(false) }
     var rotate by rememberSaveable { mutableStateOf(false) }
-    var duration by rememberSaveable { mutableIntStateOf(500) }
-    var easingIndex by rememberSaveable { mutableIntStateOf(0) }
+    var duration by rememberSaveable { mutableIntStateOf(320) }
+    var easingIndex by rememberSaveable { mutableIntStateOf(1) }
 
     val easingLabels = listOf("FastOutSlowIn", "LinearOutSlowIn", "FastOutLinearIn", "Linear")
     val easing = when (easingIndex) {
@@ -112,12 +112,11 @@ fun ValueBased() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Card adds elevation animation nicely
+
         Card(
             modifier = Modifier
-                .padding(vertical = 16.dp)
+                .padding(bottom = 44.dp)
                 .clickable {
-                    // Tap card to toggle a compound animation (great for GIFs)
                     big = !big
                     on = !on
                 },

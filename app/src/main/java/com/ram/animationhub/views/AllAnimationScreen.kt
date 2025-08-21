@@ -1,5 +1,6 @@
 package com.ram.animationhub.views
 
+import AnimatableBounded
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -144,31 +145,29 @@ fun SectionTitle(title: String, description: String) {
 
 @Composable
 fun AnimationDetail(title: String) {
-    LazyColumn(
+    Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
-        item {
-            when (true) {
-                (title == AnimationId.ValueBased.name) -> ValueBased()
-                (title == AnimationId.Animatable.name) -> Animatable()
-                (title == AnimationId.Visibility.name) -> Visibility()
-                (title == AnimationId.Transition.name) -> Transition()
-                (title == AnimationId.Infinite.name) -> Infinite()
-                (title == AnimationId.AnimateContentSize.name) -> AnimateContentSize()
-                (title == AnimationId.AnimatedContent.name) -> AnimatedContent()
-                (title == AnimationId.Draggable.name) -> Draggable()
-                (title == AnimationId.AnimateItemPlacement.name) -> AnimateItemPlacement()
-                (title == AnimationId.GraphicsLayer.name) -> GraphicsLayer()
-                else -> ValueBased()
-            }
+        when (true) {
+            (title == AnimationId.ValueBased.name) -> ValueBased()
+            (title == AnimationId.Animatable.name) -> AnimatableBounded()
+            (title == AnimationId.Visibility.name) -> Visibility()
+            (title == AnimationId.Transition.name) -> Transition()
+            (title == AnimationId.Infinite.name) -> Infinite()
+            (title == AnimationId.AnimateContentSize.name) -> AnimateContentSize()
+            (title == AnimationId.AnimatedContent.name) -> AnimatedContent()
+            (title == AnimationId.Draggable.name) -> Draggable()
+            (title == AnimationId.AnimateItemPlacement.name) -> AnimateItemPlacement()
+            (title == AnimationId.GraphicsLayer.name) -> GraphicsLayer()
+            else -> ValueBased()
         }
     }
 }
 
 val animations = listOf(
     Animation(AnimationId.ValueBased, "Value based animation", "Color and Size animation"),
-    Animation(AnimationId.Animatable, "Animatable (suspend control)", "Animate arbitrary floats with coroutines"),
+    Animation(AnimationId.Animatable, "Animatable bounded", "Drag and leave view at specific position"),
     Animation(AnimationId.Visibility, "Visibility animation", "Show/Hide view with animation"),
     Animation(AnimationId.Transition, "Transition animation", "Collapsing/Expanding with multiple props"),
     Animation(AnimationId.Infinite, "Infinite animation", "Looping pulse/breathing effects"),
