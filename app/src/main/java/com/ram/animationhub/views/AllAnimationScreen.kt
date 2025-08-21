@@ -9,15 +9,16 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -33,7 +34,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -114,10 +117,13 @@ fun AnimationList(onClick: (AnimationId) -> Unit) {
 fun AnimationListItem(animation: Animation, onClick: () -> Unit) {
     Column(
         Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(8.dp))
-        Card(shape = CardDefaults.elevatedShape, onClick = onClick) {
+
+        Card(modifier = Modifier
+            .fillMaxSize(0.95f)
+            .padding(vertical = 4.dp),  shape = RoundedCornerShape(25), colors = CardDefaults.cardColors(), onClick = onClick) {
             SectionTitle(title = animation.title, description = animation.description)
         }
     }
@@ -129,17 +135,17 @@ fun SectionTitle(title: String, description: String) {
         title,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, top = 10.dp, end = 16.dp),
+            .padding(start = 16.dp, top = 16.dp, end = 16.dp),
         fontSize = 20.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Medium
     )
     Text(
         description,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, top = 2.dp, end = 16.dp, bottom = 10.dp),
+            .padding(start = 16.dp, top = 2.dp, end = 16.dp, bottom = 14.dp),
         fontSize = 14.sp,
-        fontWeight = FontWeight.Normal
+        fontWeight = FontWeight.Light
     )
 }
 

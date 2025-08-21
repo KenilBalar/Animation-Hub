@@ -51,7 +51,6 @@ fun AnimateContentSize() {
                 Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(12.dp))
-                    .background(Color(0xFFE0E0E0))
                     .animateContentSize()
                     .padding(12.dp)
             ) {
