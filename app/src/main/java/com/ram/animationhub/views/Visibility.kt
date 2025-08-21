@@ -4,15 +4,16 @@ package com.ram.animationhub.views
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -32,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 /**
  * @author ASUS
@@ -55,27 +57,28 @@ fun Visibility() {
                     Modifier
                         .fillMaxWidth()
                         .height(80.dp)
+                        .padding(bottom = 16.dp)
                         .clip(RoundedCornerShape(12.dp))
-                        .background(Color(0xFF90CAF9)), contentAlignment = Alignment.Center
+                        .background(Color(0xFF2196F3)), contentAlignment = Alignment.Center
                 ) {
-                    Text("Hello Visibility")
+                    Text("I'm Visible Now!")
                 }
             }
-            Spacer(Modifier.height(12.dp))
-            Crossfade(targetState = state, label = "crossfade") { on ->
+            Button({ visible = !visible }, modifier = Modifier.fillMaxWidth(0.4f)) { Text(if (visible) "Hide" else "Show") }
+            Spacer(modifier = Modifier.height(30.dp))
+            Crossfade(targetState = state,animationSpec = tween(durationMillis = 300, easing = LinearOutSlowInEasing) ,label = "crossfade") { on ->
                 Box(
                     Modifier
                         .height(60.dp)
                         .fillMaxWidth(), contentAlignment = Alignment.Center
                 ) {
-                    Text(if (on) "State: ON" else "State: OFF", fontWeight = FontWeight.SemiBold)
+
+                    Text(if (on) "Crossfade animation" else "I'm changing with", fontSize = 32.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
-            Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Button({ visible = !visible }) { Text(if (visible) "Hide" else "Show") }
-                Button({ state = !state }) { Text("Crossfade") }
-            }
+
+            Button({ state = !state }, modifier = Modifier.fillMaxWidth(0.4f)) { Text("Change Text") }
+
         }
     }
 }
