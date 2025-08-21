@@ -72,13 +72,11 @@ fun Visibility() {
                         .height(60.dp)
                         .fillMaxWidth(), contentAlignment = Alignment.Center
                 ) {
-
                     Text(if (on) "Crossfade animation" else "I'm changing with", fontSize = 32.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
 
             Button({ state = !state }, modifier = Modifier.fillMaxWidth(0.4f)) { Text("Change Text") }
-
         }
     }
 }

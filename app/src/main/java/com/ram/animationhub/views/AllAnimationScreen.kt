@@ -169,7 +169,7 @@ val animations = listOf(
     Animation(AnimationId.ValueBased, "Value based animation", "Color and Size animation"),
     Animation(AnimationId.Animatable, "Animatable bounded", "Drag and leave view at specific position"),
     Animation(AnimationId.Visibility, "Visibility animation", "Show/Hide view with animation"),
-    Animation(AnimationId.Transition, "Transition animation", "Collapsing/Expanding with multiple props"),
+    Animation(AnimationId.Transition, "Transition animation", "Shape transition with increasing/decreasing size"),
     Animation(AnimationId.Infinite, "Infinite animation", "Looping pulse/breathing effects"),
     Animation(AnimationId.AnimateContentSize, "Layout change animation", "Smoothly resize on content change"),
     Animation(AnimationId.AnimatedContent, "AnimatedContent", "Swap content with directional slide + fade"),
