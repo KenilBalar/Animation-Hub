@@ -98,7 +98,6 @@ fun AnimationMasterApp() {
     }
 }
 
-// ----- List Screen ----------------------------------------------------------
 @Composable
 fun AnimationList(onClick: (AnimationId) -> Unit) {
     LazyColumn(
@@ -145,10 +144,9 @@ fun SectionTitle(title: String, description: String) {
 
 @Composable
 fun AnimationDetail(title: String) {
-    // Single scrollable container per screen
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.Center
     ) {
         item {
             when (true) {
