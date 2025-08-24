@@ -1,7 +1,7 @@
 # 🎬 Animation Hub
 
 A showcase of Jetpack Compose animation APIs brought together in one project.  
-**Animation Hub** demonstrates practical usage of value animations, transitions, visibility, gestures, and more — all in a single hub for developers to learn and explore.
+**Animation Hub** demonstrates practical usage of value animations, transitions, visibility, gestures, and more, all in a single hub for developers to learn and explore.
 
 ### 🛠 Tech Stack Used
 - Jetpack Compose for UI
@@ -57,3 +57,4 @@ Clone the repository and run the app:
 
 ```bash
 git clone https://github.com/KenilBalar/Animation-Hub.git
+
