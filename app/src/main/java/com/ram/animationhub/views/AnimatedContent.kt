@@ -56,7 +56,7 @@ fun AnimatedContent() {
                 Modifier
                     .padding(16.dp), verticalAlignment = Alignment.CenterVertically
             ) {
-
+git sta
                 Text("-", fontSize = 36.sp, textAlign = TextAlign.Center, modifier = Modifier
                     .size(44.dp)
                     .clip(shape = RoundedCornerShape(50))
